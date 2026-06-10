@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>明天，會是晴天嗎？</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            font-family: "PingFang TC", "Microsoft JhengHei", sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+        .container {
+            max-width: 550px;
+            width: 90%;
+            text-align: center;
+            padding: 20px;
+            margin: auto;
+        }
+        .text-content {
+            font-size: 1.1rem;
+            line-height: 2;
+            letter-spacing: 2px;
+            margin-bottom: 40px;
+            white-space: pre-line;
+            font-weight: 300;
+            transition: opacity 0.5s ease;
+        }
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+        }
+        button {
+            background: none;
+            border: 1px solid #ffffff;
+            color: #ffffff;
+            padding: 12px 30px;
+            font-size: 1rem;
+            cursor: pointer;
+            width: 300px;
+            transition: all 0.3s ease;
+            letter-spacing: 1px;
+        }
+        button:hover:not(:disabled) {
+            background-color: #ffffff;
+            color: #000000;
+        }
+        button:disabled {
+            cursor: default;
+        }
+        .hidden { display: none !important; }
+        .red-text { color: #ff0000 !important; border-color: #ff0000 !important; }
+        .hint-text {
+            font-size: 0.85rem;
+            color: #555555;
+            letter-spacing: 1px;
+            margin-top: 40px;
+            animation: pulse 2s infinite;
+        }
+        .big-red {
+            color: #ff0000;
+            font-size: 2rem;
+            font-weight: bold;
+            letter-spacing: 6px;
+        }
+        @keyframes pulse {
+            0% { opacity: 0.3; }
+            50% { opacity: 0.8; }
+            100% { opacity: 0.3; }
+        }
+        /* 娃娃圖示 */
+        .doll-svg {
+            margin: 20px auto 0 auto;
+            display: block;
+            opacity: 0.8;
+        }
+        /* 點擊螢幕繼續專用滿版容器 */
+        .clickable-page {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            position: absolute;
+            top: 0;
+            left: 0;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container" id="main-container">
+    <div id="page1">
+        <div class="text-content">台灣近日陰雨連綿。
+        據說製作晴天娃娃能祈禱放晴，
+        讓我們一起製作晴天娃娃，
+        祈禱明天放晴吧！</div>
+        <div class="options">
+            <button onclick="nextPage(2)">進入遊戲</button>
+        </div>
+    </div>
+
+    <div id="page2" class="hidden">
+        <div class="text-content">外面的雨，下得太久了
+        窗櫺上積滿了水氣
+        空氣裡瀰漫著一股潮濕的味道
+        你要不要把我掛在窗前
+        一起祈求明天的陽光呢？
+        
+        <svg class="doll-svg" width="60" height="80" viewBox="0 0 60 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="30" cy="25" r="14" stroke="white" stroke-width="1.5"/>
+            <path d="M18 23C18 23 19 21 21 21C23 21 23 23 23 23" stroke="white" stroke-width="1.2"/>
+            <path d="M37 23C37 23 38 21 40 21C42 21 42 23 42 23" stroke="white" stroke-width="1.2"/>
+            <path d="M26 31C28 33 32 33 34 31" stroke="white" stroke-width="1.2" stroke-linecap="round"/>
+            <path d="M30 11V2" stroke="white" stroke-width="1.2"/>
+            <path d="M16 36C22 37 25 35 30 38C35 35 38 37 44 36C47 42 49 54 46 72C38 68 34 74 30 70C26 74 22 68 14 72C11 54 13 42 16 36Z" stroke="white" stroke-width="1.5" stroke-linejoin="round"/>
+        </svg>
+        <div style="font-size: 1.05rem; margin-top:25px; font-weight:400;">題目 1：你願意把我掛上去嗎？</div></div>
+        <div class="options">
+            <button onclick="nextPage(3)">願意。</button>
+            <button id="p2-refuse" onclick="handleP2Refuse()">不願意。</button>
+        </div>
+    </div>
+
+    <div id="page3" class="hidden">
+        <div class="text-content">現在你有了一塊乾淨的白布
+        還有一條結實的細繩。
+        
+        <span style="font-size: 1.05rem; font-weight:400;">題目2：在掛上去之前，你想用什麼顏色幫我畫上表情呢？</span></div>
+        <div class="options" id="p3-options">
+            <button onclick="handleDelayChoice(this, 'p3', '看起來很可愛呢！', 4)">黑色奇異筆（像正常的娃娃一樣）</button>
+            <button onclick="handleDelayChoice(this, 'p3', '小紅正式上崗囉！', 4)">紅色奇異筆（看起來比較活潑）</button>
+            <button onclick="handleDelayChoice(this, 'p3', '唔⋯有點痛呢。', 4)">用剪刀隨便戳兩個洞。</button>
+        </div>
+    </div>
+
+    <div id="page4" class="hidden">
+        <div class="text-content"><span style="font-size: 1.05rem; font-weight:400;">題目 3：當你用繩子死死勒住我的脖子、掛在窗前時，你聽到了什麼？</span></div>
+        <div class="options" id="p4-options">
+            <button onclick="handleDelayChoice(this, 'p4', '別擔心，馬上就會晴天了', 5)">窗外滴滴答答的雨聲。</button>
+            <button onclick="handleDelayChoice(this, 'p4', '聽起來像是有人在哭泣呢', 5)">風吹過窗縫，呼呼的聲音。</button>
+            <button onclick="handleDelayChoice(this, 'p4', '這是什麼聲音呢？', 5)">梁子承受重物、微微受力下沉的吱呀聲。</button>
+        </div>
+    </div>
+
+    <div id="page5" class="hidden">
+        <div class="text-content">雨水不斷拍打著玻璃。房間裡好像越來越冷了。
+        
+        <span style="font-size: 1.05rem; font-weight:400;">題目 4：你看著窗前的娃娃，你覺得它現在是用什麼姿勢看著你？</span></div>
+        <div class="options">
+            <button onclick="nextPage(6)">順著風，輕快地在窗前旋轉。</button>
+            <button onclick="nextPage(6)">靜止不動，正對著你的床頭。</button>
+            <button onclick="nextPage(6)">因為繩子綁得太緊……它的頭，好像有一點歪一邊。</button>
+        </div>
+    </div>
+
+    <div id="page6" class="hidden">
+        <div class="text-content"><span style="font-size: 1.05rem; font-weight:400;">題目 5：仔細一看，你發現剛才親手綁的繩結……</span></div>
+        <div class="options" id="p6-options">
+            <button onclick="handleDelayChoice(this, 'p6', '應該不會掉下來吧？', 7)">綁得很牢。</button>
+            <button onclick="handleDelayChoice(this, 'p6', '有點痛⋯', 7)">似乎陷進了白布深處，把它的脖子勒得越來越細。</button>
+            <button onclick="handleDelayChoice(this, 'p6', '這樣綁很眼熟呢', 7)">不知道為什麼，綁法看起來很像一條套索。</button>
+        </div>
+    </div>
+
+    <div id="page7" class="hidden">
+        <div class="text-content" style="text-align: left;">引言：其實，關於我的由來，還有另外一個故事。
+
+        傳說在很久以前，也是這樣連綿的雨。一位能祈求晴天的和尚來到了村落，但雨都沒有停。領主下令用一根粗繩把和尚活活吊死。隨後用白布包住了和尚的頭。隔天，雨居然真的停了。
+        
+        這就是晴天娃娃。
+        想要放晴，從一開始，就必須有人付出代價。</div>
+        <div class="options" style="margin-top: 30px;">
+            <button onclick="nextPage(8)">繼續</button>
+        </div>
+    </div>
+
+    <div id="page8" class="hidden">
+        <div class="text-content"><span style="font-size: 1.05rem; font-weight:400;">題目 6：聽完故事，你猛然看向窗邊，你覺得那個娃娃……</span></div>
+        <div class="options" id="p8-options">
+            <button onclick="handleDelayChoice(this, 'p8', '是嗎？', 9)">只是普通的娃娃。</button>
+            <button onclick="handleDelayChoice(this, 'p8', '你的感覺沒有錯。', 9)">形狀越來越像一個被吊死的人。</button>
+            <button onclick="handleDelayChoice(this, 'p8', '你也覺得有趣嗎？', 9)">它好像……在對我笑？</button>
+        </div>
+    </div>
+
+    <div id="page10" class="hidden">
+        <div class="text-content"><span style="font-size: 1.05rem; font-weight:400;">題目 7：仔細聽，是不是傳來了指甲抓撓玻璃的聲音？</span></div>
+        <div class="options">
+            <button onclick="triggerGlitch(11)">那是風。</button>
+            <button onclick="triggerGlitch(11)">它想進來。</button>
+            <button onclick="triggerGlitch(11)">繩子斷了，它已經在房間裡了。</button>
+        </div>
+    </div>
+
+    <div id="page11" class="hidden">
+        <div class="text-content"><span style="font-size: 1.05rem; font-weight:400;">題目 8：你看著窗戶，雨水的顏色是？</span></div>
+        <div class="options" id="p11-options">
+            <button onclick="handleDelayChoice(this, 'p11', '你確定嗎？', 12)">透明的雨水。</button>
+            <button onclick="handleDelayChoice(this, 'p11', '那是什麼呢？', 12)">混濁的深紅色。</button>
+            <button onclick="handleDelayChoice(this, 'p11', '你最好看看。', 12)">我不敢看。</button>
+        </div>
+    </div>
+
+    <div id="page12" class="hidden">
+        <div class="text-content"><span style="font-size: 1.05rem; font-weight:400;">題目 9：你想把娃娃拿下來，但你發現你的雙手無法動彈……你感覺到天花板上垂下來一條繩子，正好圈住你的脖子。</span></div>
+        <div class="options" id="p12-options">
+            <button onclick="handleRedChoice(this, 'p12', '憑什麼', 13)">放開我。</button>
+            <button onclick="handleRedChoice(this, 'p12', '我最討厭事後道歉', 13)">對不起。</button>
+            <button onclick="handleRedChoice(this, 'p12', '你明明很清楚', 13)">這就是應該付出的代價。</button>
+        </div>
+    </div>
+
+    <div id="page15" class="hidden">
+        <div class="text-content" style="font-size: 1.5rem; letter-spacing: 4px; font-weight:bold; margin-bottom: 20px;">成 功 通 關</div>
+        <div class="text-content" style="font-size: 1rem; color: #aaa;">謝謝遊玩 希望你今晚做個好夢！</div>
+    </div>
+</div>
+
+<div id="page9" class="clickable-page hidden" onclick="advancePage9()">
+    <div class="container">
+        <div class="text-content" id="p9-text">如果隔天還是下雨，人們就會把娃娃「倒吊」過來，當作懲罰與詛咒。</div>
+        <div class="hint-text" id="p9-hint">點擊螢幕以繼續</div>
+    </div>
+</div>
+
+<div id="page13" class="clickable-page hidden" onclick="advancePage13()">
+    <div class="container">
+        <div class="text-content" id="p13-text">這場雨是不會停的。從一開始，就沒有人能向神明乞求晴朗。想要天空放晴，那就必須付出代價。
+
+        當年，那個和尚用他的命換來了一天的晴天。而今天，既然你親手把繩子圈在我的脖子上，把你的願望放到我的身上……</div>
+        
+        <div id="p13-final-qa" class="hidden" onclick="event.stopPropagation();">
+            <div class="options" style="margin-top: 30px;">
+                <div style="font-size:1.05rem; margin-bottom: 5px; color:#ff0000; font-weight:bold;">題目 10：你想要被畫上什麼顏色的五官呢？</div>
+                <button class="red-text" onclick="goToPage14()">黑色</button>
+                <button class="red-text" onclick="goToPage14()">紅色</button>
+                <button class="red-text" onclick="goToPage14()">用剪刀戳個洞</button>
+                <div class="red-text" style="font-size:0.9rem; margin-top:10px; letter-spacing: 2px;">點 擊 提 交 ，付 出 代 價</div>
+            </div>
+        </div>
+        <div class="hint-text" id="p13-hint">點擊螢幕以繼續</div>
+    </div>
+</div>
+
+<div id="page14" class="clickable-page hidden" onclick="advancePage14()">
+    <div class="container">
+        <div class="text-content red-text" id="p14-text" style="font-size: 1.2rem; font-weight:bold;">希望你今晚做個好夢
+        醒來後你就會成為我們的一員了</div>
+        <div class="hint-text" id="p14-hint">點擊螢幕以繼續</div>
+    </div>
+</div>
+
+<script>
+    let currentPage = 1;
+    let p9Stage = 1;
+    let p13Stage = 1;
+    let p14Stage = 1; // 修正未定義變數
+
+    function nextPage(page) {
+        document.getElementById(`page${currentPage}`).classList.add('hidden');
+        const nextTarget = document.getElementById(`page${page}`);
+        nextTarget.classList.remove('hidden');
+        
+        // 保持 body 永遠是完美置中的 flex 布局
+        if(page === 9 || page === 13 || page === 14) {
+            document.getElementById('main-container').classList.add('hidden');
+        } else {
+            document.getElementById('main-container').classList.remove('hidden');
+        }
+        currentPage = page;
+    }
+
+    // 第二頁不願意處理
+    function handleP2Refuse() {
+        const refuseBtn = document.getElementById('p2-refuse');
+        refuseBtn.disabled = true;
+        refuseBtn.classList.add('red-text');
+        refuseBtn.innerText = "謝謝你願意";
+        setTimeout(() => {
+            nextPage(3);
+        }, 5000);
+    }
+
+    // 通用延遲按鈕轉換函數 (三、四、六、八、十一頁)
+    function handleDelayChoice(button, prefix, newText, targetPage) {
+        const buttons = document.querySelectorAll(`#${prefix}-options button`);
+        buttons.forEach(btn => btn.disabled = true);
+        
+        button.innerText = newText;
+        
+        setTimeout(() => {
+            nextPage(targetPage);
+        }, 5000);
+    }
+
+    // 第十二頁紅字專用
+    function handleRedChoice(button, prefix, newText, targetPage) {
+        const buttons = document.querySelectorAll(`#${prefix}-options button`);
+        buttons.forEach(btn => btn.disabled = true);
+        
+        button.classList.add('red-text');
+        button.innerText = newText;
+        
+        setTimeout(() => {
+            nextPage(targetPage);
+        }, 5000);
+    }
+
+    // 第九頁點擊流
+    function advancePage9() {
+        if (p9Stage === 1) {
+            document.getElementById('p9-text').innerText = "不過憑什麼？祈求晴天的是你，最後要被頭朝下失去尊嚴的卻是它？\n它拒絕再為你受懲罰了。\n它很生氣";
+            p9Stage = 2;
+        } else if (p9Stage === 2) {
+            document.getElementById('p9-text').innerHTML = '<span class="big-red">我 狠 生 氣</span>';
+            document.getElementById('p9-hint').classList.add('hidden');
+            p9Stage = 3;
+            setTimeout(() => {
+                nextPage(10);
+            }, 5000);
+        }
+    }
+
+    // 第十頁閃退閃紅光特效
+    function triggerGlitch(nextPageNum) {
+        let count = 0;
+        const interval = setInterval(() => {
+            document.body.style.backgroundColor = count % 2 === 0 ? "#ff0000" : "#000000";
+            count++;
+            if(count > 5) {
+                clearInterval(interval);
+                document.body.style.backgroundColor = "#000000";
+                nextPage(nextPageNum);
+            }
+        }, 80);
+    }
+
+    // 第十三頁點擊流
+    function advancePage13() {
+        if (p13Stage === 1) {
+            document.getElementById('p13-text').innerText = "這個代價，理所當然是由你承擔。\n你聽，外面的雨聲好像停了。\n因為，繩子已經套好了。";
+            p13Stage = 2;
+        } else if (p13Stage === 2) {
+            document.getElementById('p13-text').classList.add('hidden');
+            document.getElementById('p13-hint').classList.add('hidden');
+            document.getElementById('p13-final-qa').classList.remove('hidden');
+            p13Stage = 3; 
+        }
+    }
+    
+    function goToPage14() {
+        nextPage(14);
+    }
+
+    // 第十四頁點擊流
+    function advancePage14() {
+        if (p14Stage === 1) {
+            nextPage(15);
+        }
+    }
+</script>
+
+</body>
+</html>
