@@ -61,7 +61,7 @@
         }
         .hidden { display: none !important; }
         
-        /* 顏色樣式微調 */
+        /* 樣式色彩控制 */
         .red-text { color: #ff0000 !important; border-color: #ff0000 !important; }
         .green-text { color: #008800 !important; border-color: #008800 !important; }
         .white-text-btn { color: #ffffff !important; border-color: #ffffff !important; }
@@ -74,8 +74,8 @@
             margin-top: 40px;
             animation: pulse 2s infinite;
         }
-        .big-red {
-            color: #ff0000;
+        .big-white {
+            color: #ffffff;
             font-size: 2rem;
             font-weight: bold;
             letter-spacing: 6px;
@@ -87,7 +87,7 @@
         }
         /* 娃娃圖示 */
         .doll-svg {
-            margin: 20px auto 0 auto;
+            margin: 20px auto 25px auto;
             display: block;
             opacity: 0.8;
         }
@@ -106,12 +106,23 @@
             padding: 20px;
         }
         
-        /* 特殊環境色變化 */
+        /* 全域背景反轉樣式 */
         body.red-bg { background-color: #ff0000 !important; color: #ffffff !important; }
         body.black-bg { background-color: #000000 !important; color: #ff0000 !important; }
     </style>
 </head>
 <body>
+
+<div class="hidden">
+    <svg id="doll-icon" width="60" height="80" viewBox="0 0 60 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="30" cy="25" r="14" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M18 23C18 23 19 21 21 21C23 21 23 23 23 23" stroke="currentColor" stroke-width="1.2"/>
+        <path d="M37 23C37 23 38 21 40 21C42 21 42 23 42 23" stroke="currentColor" stroke-width="1.2"/>
+        <path d="M26 31C28 33 32 33 34 31" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+        <path d="M30 11V2" stroke="currentColor" stroke-width="1.2"/>
+        <path d="M16 36C22 37 25 35 30 38C35 35 38 37 44 36C47 42 49 54 46 72C38 68 34 74 30 70C26 74 22 68 14 72C11 54 13 42 16 36Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+    </svg>
+</div>
 
 <div class="container" id="main-container">
     <div id="page1">
@@ -131,15 +142,8 @@
         你要不要把我掛在窗前
         一起祈求明天的陽光呢？
         
-        <svg class="doll-svg" width="60" height="80" viewBox="0 0 60 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="30" cy="25" r="14" stroke="black" stroke-width="1.5"/>
-            <path d="M18 23C18 23 19 21 21 21C23 21 23 23 23 23" stroke="black" stroke-width="1.2"/>
-            <path d="M37 23C37 23 38 21 40 21C42 21 42 23 42 23" stroke="black" stroke-width="1.2"/>
-            <path d="M26 31C28 33 32 33 34 31" stroke="black" stroke-width="1.2" stroke-linecap="round"/>
-            <path d="M30 11V2" stroke="black" stroke-width="1.2"/>
-            <path d="M16 36C22 37 25 35 30 38C35 35 38 37 44 36C47 42 49 54 46 72C38 68 34 74 30 70C26 74 22 68 14 72C11 54 13 42 16 36Z" stroke="black" stroke-width="1.5" stroke-linejoin="round"/>
-        </svg>
-        <div style="font-size: 1.05rem; margin-top:25px; font-weight:400;">題目 1：你願意把我掛上去嗎？</div></div>
+        <script>document.write(document.getElementById('doll-icon').outerHTML);</script>
+        <div style="font-size: 1.05rem; font-weight:400;">題目 1：你願意把我掛上去嗎？</div></div>
         <div class="options">
             <button onclick="nextPage(3)">願意。</button>
             <button id="p2-refuse" onclick="handleP2Refuse()">不願意。</button>
@@ -159,7 +163,7 @@
     </div>
 
     <div id="page4" class="hidden">
-        <div class="text-content"><span style="font-size: 1.05rem; font-weight:400;">題目 3：當你用繩子死死勒住我的脖子、掛在窗前時，你聽到了什麼？</span></div>
+        <div class="text-content"><script>document.write(document.getElementById('doll-icon').outerHTML);</script><span style="font-size: 1.05rem; font-weight:400;">題目 3：當你用繩子死死勒住我的脖子、掛在窗前時，你聽到了什麼？</span></div>
         <div class="options" id="p4-options">
             <button onclick="handleDelayChoice(this, 'p4', 'green-text', '別擔心，馬上就會晴天了', 5)">窗外滴滴答答的雨聲。</button>
             <button onclick="handleDelayChoice(this, 'p4', 'red-text', '聽起來像是有人在哭泣呢', 5)">風吹過窗縫，呼呼的聲音。</button>
@@ -169,7 +173,7 @@
 
     <div id="page5" class="hidden">
         <div class="text-content">雨水不斷拍打著玻璃。房間裡好像越來越冷了。
-        
+        <script>document.write(document.getElementById('doll-icon').outerHTML);</script>
         <span style="font-size: 1.05rem; font-weight:400;">題目 4：你看著窗前的娃娃，你覺得它現在是用什麼姿勢看著你？</span></div>
         <div class="options" id="p5-options">
             <button onclick="handleDelayChoice(this, 'p5', 'red-text', '我無法控制自己。', 6)">順著風，輕快地在窗前旋轉。</button>
@@ -179,7 +183,7 @@
     </div>
 
     <div id="page6" class="hidden">
-        <div class="text-content"><span style="font-size: 1.05rem; font-weight:400;">題目 5：仔細一看，你發現剛才親手綁的繩結……</span></div>
+        <div class="text-content"><script>document.write(document.getElementById('doll-icon').outerHTML);</script><span style="font-size: 1.05rem; font-weight:400;">題目 5：仔細一看，你發現剛才親手綁的繩結……</span></div>
         <div class="options" id="p6-options">
             <button onclick="handleDelayChoice(this, 'p6', 'red-text', '應該不會掉下來吧？', 7)">綁得很牢。</button>
             <button onclick="handleDelayChoice(this, 'p6', 'red-text', '有點痛⋯', 7)">似乎陷進了白布深處，把它的脖子勒得越來越細。</button>
@@ -188,7 +192,7 @@
     </div>
 
     <div id="page8" class="hidden">
-        <div class="text-content"><span style="font-size: 1.05rem; font-weight:400;">題目 6：聽完故事，你猛然看向窗邊，你覺得那個娃娃……</span></div>
+        <div class="text-content"><script>document.write(document.getElementById('doll-icon').outerHTML);</script><span style="font-size: 1.05rem; font-weight:400;">題目 6：聽完故事，你猛然看向窗邊，你覺得那個娃娃……</span></div>
         <div class="options" id="p8-options">
             <button onclick="handleDelayChoice(this, 'p8', 'red-text', '是嗎？', 9)">只是普通的娃娃。</button>
             <button onclick="handleDelayChoice(this, 'p8', 'red-text', '你的感覺沒有錯。', 9)">形狀越來越像一個被吊死的人。</button>
@@ -197,179 +201,4 @@
     </div>
 
     <div id="page10" class="hidden">
-        <div class="text-content"><span style="font-size: 1.05rem; font-weight:400;">題目 7：仔細聽，是不是傳來了指甲抓撓玻璃的聲音？</span></div>
-        <div class="options" id="p10-options">
-            <button onclick="handleDelayChoice(this, 'p10', 'red-text', '你確定嗎？', 11)">那是風。</button>
-            <button onclick="handleDelayChoice(this, 'p10', 'red-text', '你猜呢？', 11)">是它在抓嗎？</button>
-            <button onclick="handleDelayChoice(this, 'p10', 'red-text', '是的。', 11)">它已經在房間裡了。</button>
-        </div>
-    </div>
-
-    <div id="page11" class="hidden">
-        <div class="text-content"><span style="font-size: 1.05rem; font-weight:400;">題目 8：你看著窗戶，雨水的顏色是？</span></div>
-        <div class="options" id="p11-options">
-            <button onclick="handleDelayChoice(this, 'p11', 'red-text', '你確定嗎？', 12)">透明的雨水。</button>
-            <button onclick="handleDelayChoice(this, 'p11', 'red-text', '那是什麼呢？', 12)">混濁的深紅色。</button>
-            <button onclick="handleDelayChoice(this, 'p11', 'red-text', '你最好看看。', 12)">我不敢看。</button>
-        </div>
-    </div>
-
-    <div id="page12" class="hidden">
-        <div class="text-content"><span style="font-size: 1.05rem; font-weight:400;">題目 9：你想把娃娃拿下來，但你發現你的雙手無法動彈……你感覺到天花板上垂下來一條繩子，正好圈住你的脖子。</span></div>
-        <div class="options" id="p12-options">
-            <button onclick="handleDelayChoice(this, 'p12', 'red-text', '憑什麼', 13)">放過我。</button>
-            <button onclick="handleDelayChoice(this, 'p12', 'red-text', '我最討厭事後道歉', 13)">對不起。</button>
-            <button onclick="handleDelayChoice(this, 'p12', 'red-text', '你明明很清楚的', 13)">這就是應該付出的代價。</button>
-        </div>
-    </div>
-
-    <div id="page15" class="hidden">
-        <div class="text-content" style="font-size: 1.5rem; letter-spacing: 4px; font-weight:bold; margin-bottom: 20px;">成 功 通 關</div>
-        <div class="text-content" style="font-size: 1rem; color: #666666;">謝謝遊玩 希望你今晚做個好夢！</div>
-    </div>
-</div>
-
-<div id="page7" class="clickable-page hidden" onclick="nextPage(8)">
-    <div class="container">
-        <div class="text-content" style="text-align: left;">其實，關於我的由來，還有另外一個故事。傳說在很久以前，也是這樣連綿的雨。一位能祈求晴天的和尚來到了村落，但雨一直沒有停。領主下令用一根粗繩把和尚活活吊死。隨後用白布包住了和尚的頭。隔天，雨居然真的停了。這就是晴天娃娃。想要放晴，從一開始，就必須有人付出代價。</div>
-        <div class="hint-text">點擊螢幕以繼續</div>
-    </div>
-</div>
-
-<div id="page9" class="clickable-page hidden" onclick="advancePage9()">
-    <div class="container">
-        <div class="text-content" id="p9-text">如果隔天還是下雨，人們就會把娃娃「倒吊」過來，當作懲罰與詛咒。</div>
-        <div class="hint-text" id="p9-hint">點擊螢幕以繼續</div>
-    </div>
-</div>
-
-<div id="page13" class="clickable-page hidden" onclick="advancePage13()">
-    <div class="container">
-        <div class="text-content" id="p13-text">這場雨是不會停的，從一開始就沒有人能向神明乞求晴朗。想要天空放晴，那就必須付出代價。
-
-        當年，那個和尚用他的命換來了一天的晴天。而今天，既然你親手把繩子圈在我的脖子上，把你的願望放到我的身上……</div>
-        
-        <div id="p13-final-qa" class="hidden" onclick="event.stopPropagation();">
-            <div class="options" style="margin-top: 30px;">
-                <div style="font-size:1.05rem; margin-bottom: 15px; color:#ffffff; font-weight:bold; letter-spacing: 1px;">現在，輪到你來當晴天娃娃了。</div>
-                <div style="font-size:1.02rem; margin-bottom: 20px; color:#ffffff;">題目 10：你想要被畫上什麼顏色的五官呢？</div>
-                <button class="white-text-btn" onclick="goToPage14()">黑色</button>
-                <button class="white-text-btn" onclick="goToPage14()">紅色</button>
-                <button class="white-text-btn" onclick="goToPage14()">用剪刀戳個洞</button>
-                <div style="font-size:0.9rem; margin-top:20px; letter-spacing: 2px; color: #ffffff; font-weight: bold;">點 擊 提 交 ，付 出 代 價</div>
-            </div>
-        </div>
-        <div class="hint-text" id="p13-hint">點擊螢幕以繼續</div>
-    </div>
-</div>
-
-<div id="page14" class="clickable-page hidden" onclick="advancePage14()">
-    <div class="container">
-        <div class="text-content" style="font-size: 1.2rem; font-weight:bold; color: #ff0000;">希望你今晚做個好夢\n醒來後你就會成為我們的一員了</div>
-        <div class="hint-text" id="p14-hint" style="color: #666666;">點擊螢幕以繼續</div>
-    </div>
-</div>
-
-<script>
-    let currentPage = 1;
-    let p9Stage = 1;
-    let p13Stage = 1;
-    let p14Stage = 1;
-
-    function nextPage(page) {
-        // 還原環境顏色樣式
-        document.body.className = "";
-        
-        document.getElementById(`page${currentPage}`).classList.add('hidden');
-        const nextTarget = document.getElementById(`page${page}`);
-        nextTarget.classList.remove('hidden');
-        
-        // 控制主容器與滿版點擊容器的顯示
-        const listClickPages = [7, 9, 13, 14];
-        if(listClickPages.includes(page)) {
-            document.getElementById('main-container').classList.add('hidden');
-        } else {
-            document.getElementById('main-container').classList.remove('hidden');
-        }
-        
-        // 第十三頁最終階段觸發紅底
-        if(page === 13 && p13Stage === 3) {
-            document.body.classList.add('red-bg');
-        }
-        // 第十四頁觸發黑底
-        if(page === 14) {
-            document.body.classList.add('black-bg');
-        }
-        
-        currentPage = page;
-    }
-
-    // 第二頁不願意處理
-    function handleP2Refuse() {
-        const refuseBtn = document.getElementById('p2-refuse');
-        refuseBtn.disabled = true;
-        refuseBtn.classList.add('red-text');
-        refuseBtn.innerText = "謝謝你願意";
-        setTimeout(() => {
-            nextPage(3);
-        }, 3000); // 縮短至 3 秒
-    }
-
-    // 通用延遲按鈕轉換函數 (停留 3 秒)
-    function handleDelayChoice(button, prefix, className, newText, targetPage) {
-        const buttons = document.querySelectorAll(`#${prefix}-options button`);
-        buttons.forEach(btn => btn.disabled = true);
-        
-        button.className = className;
-        button.innerText = newText;
-        
-        setTimeout(() => {
-            nextPage(targetPage);
-        }, 3000); // 縮短至 3 秒
-    }
-
-    // 第九頁點擊流
-    function advancePage9() {
-        if (p9Stage === 1) {
-            document.getElementById('p9-text').innerText = "不過憑什麼？\n祈求晴天的是你\n要被倒吊懲罰的卻是它？\n它拒絕再為你受懲罰了。\n它很生氣。";
-            p9Stage = 2;
-        } else if (p9Stage === 2) {
-            document.getElementById('p9-text').innerHTML = '<span class="big-red">我 很 生 氣</span>';
-            document.getElementById('p9-hint').classList.add('hidden');
-            p9Stage = 3;
-            setTimeout(() => {
-                nextPage(10);
-            }, 3000); // 縮短至 3 秒
-        }
-    }
-
-    // 第十三頁點擊流
-    function advancePage13() {
-        if (p13Stage === 1) {
-            document.getElementById('p13-text').innerText = "這個代價，理所當然是由你承擔。\n你聽，外面的雨聲好像停了。\n因為，繩子已經套好了。";
-            p13Stage = 2;
-        } else if (p13Stage === 2) {
-            document.getElementById('p13-text').classList.add('hidden');
-            document.getElementById('p13-hint').classList.add('hidden');
-            
-            // 背景變紅底白字
-            document.body.classList.add('red-bg');
-            document.getElementById('p13-final-qa').classList.remove('hidden');
-            p13Stage = 3; 
-        }
-    }
-    
-    function goToPage14() {
-        nextPage(14);
-    }
-
-    // 第十四頁點擊流
-    function advancePage14() {
-        if (p14Stage === 1) {
-            nextPage(15);
-        }
-    }
-</script>
-
-</body>
-</html>
+        <div class="text-content"><span style="font-size: 1.05rem; font-weight:400;">題目
