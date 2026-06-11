@@ -336,11 +336,7 @@
         document.body.className = "";
         
         // 2. 隱藏上一個活躍頁面
-        if (currentPage === 7 || currentPage === 9 || currentPage === 13 || currentPage === 14) {
-            document.getElementById(`page${currentPage}`).classList.add('hidden');
-        } else {
-            document.getElementById(`page${currentPage}`).classList.add('hidden');
-        }
+        document.getElementById(`page${currentPage}`).classList.add('hidden');
         
         // 3. 顯示新頁面
         document.getElementById(`page${page}`).classList.remove('hidden');
@@ -389,7 +385,7 @@
     function advancePage9() {
         if (p9Stage === 1) {
             // 點擊第一次：文字生氣變化
-            document.getElementById('p9-text').innerHTML = "不過憑什麼？\n祈求晴天的是你\n要被倒吊懲罰的卻是它？\n它拒絕再為你受懲罰了。\n<span class='red-text' style='font-weight: bold;'>它很生氣。</span>";
+            document.getElementById('p9-text').innerHTML = "不過憑什麼？\n祈求晴天的是你\n要被倒吊懲罰的卻是它？\n下架拒絕再為你受懲罰了。\n<span class='red-text' style='font-weight: bold;'>它很生氣。</span>";
             p9Stage = 2;
         } else if (p9Stage === 2) {
             // 點擊第二次：切換為紅底白字「我很生氣」
