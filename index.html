@@ -104,6 +104,7 @@
             top: 0;
             left: 0;
             padding: 20px;
+            z-index: 10;
         }
         
         /* 全域背景反轉樣式 */
@@ -201,4 +202,188 @@
     </div>
 
     <div id="page10" class="hidden">
-        <div class="text-content"><span style="font-size: 1.05rem; font-weight:400;">題目
+        <div class="text-content"><span style="font-size: 1.05rem; font-weight:400;">題目 7：仔細聽，是不是傳來了指甲抓撓玻璃的聲音？</span></div>
+        <div class="options" id="p10-options">
+            <button onclick="handleDelayChoice(this, 'p10', 'red-text', '你確定嗎？', 11)">那是風。</button>
+            <button onclick="handleDelayChoice(this, 'p10', 'red-text', '你猜呢？', 11)">是它在抓嗎？</button>
+            <button onclick="handleDelayChoice(this, 'p10', 'red-text', '是的。', 11)">它已經在房間裡了。</button>
+        </div>
+    </div>
+
+    <div id="page11" class="hidden">
+        <div class="text-content"><span style="font-size: 1.05rem; font-weight:400;">題目 8：你看著窗戶，雨水的顏色是？</span></div>
+        <div class="options" id="p11-options">
+            <button onclick="handleDelayChoice(this, 'p11', 'red-text', '你確定嗎？', 12)">透明的雨水。</button>
+            <button onclick="handleDelayChoice(this, 'p11', 'red-text', '那是什麼呢？', 12)">混濁的深紅色。</button>
+            <button onclick="handleDelayChoice(this, 'p11', 'red-text', '你最好看看。', 12)">我不敢看。</button>
+        </div>
+    </div>
+
+    <div id="page12" class="hidden">
+        <div class="text-content"><span style="font-size: 1.05rem; font-weight:400;">題目 9：你想把娃娃拿下來，但你發現你的雙手無法動彈……你感覺到天花板上垂下來一條繩子，正好圈住你的脖子。</span></div>
+        <div class="options" id="p12-options">
+            <button onclick="handleDelayChoice(this, 'p12', 'red-text', '憑什麼', 13)">放過我。</button>
+            <button onclick="handleDelayChoice(this, 'p12', 'red-text', '我最討厭事後道歉', 13)">對不起。</button>
+            <button onclick="handleDelayChoice(this, 'p12', 'red-text', '你明明很清楚的', 13)">這就是應該付出的代價。</button>
+        </div>
+    </div>
+
+    <div id="page15" class="hidden">
+        <div class="text-content" style="font-size: 1.5rem; letter-spacing: 4px; font-weight:bold; margin-bottom: 20px;">成 功 通 關</div>
+        <div class="text-content" style="font-size: 1rem; color: #666666; margin-bottom: 10px;">謝謝遊玩 希望你今晚做個好夢！</div>
+        <script>document.write(document.getElementById('doll-icon').outerHTML);</script>
+    </div>
+</div>
+
+<div id="page7" class="clickable-page hidden" onclick="nextPage(8)">
+    <div class="container">
+        <div class="text-content" style="text-align: left;">其實，關於我的由來，還有另外一個故事。傳說在很久以前，也是這樣連綿的雨。一位能祈求晴天的和尚來到了村落，但雨一直沒有停。領主下令用一根粗繩把和尚活活吊死。隨後用白布包住了和尚的頭。隔天，雨居然真的停了。這就是晴天娃娃。想要放晴，從一開始，就必須有人付出代價。</div>
+        <div class="hint-text">點擊螢幕以繼續</div>
+    </div>
+</div>
+
+<div id="page9" class="clickable-page hidden" onclick="advancePage9()">
+    <div class="container">
+        <div class="text-content" id="p9-text">如果隔天還是下雨，人們就會把娃娃「倒吊」過來，當作懲罰與詛咒。</div>
+        <div class="hint-text" id="p9-hint">點擊螢幕以繼續</div>
+    </div>
+</div>
+
+<div id="page13" class="clickable-page hidden" onclick="advancePage13()">
+    <div class="container">
+        <div class="text-content" id="p13-text">這場雨是不會停的，從一開始就沒有人能向神明乞求晴朗。想要天空放晴，那就必須付出代價。
+
+        當年，那個和尚用他的命換來了一天的晴天。而今天，既然你親手把繩子圈在我的脖子上，把你的願望放到我的身上……</div>
+        
+        <div id="p13-final-qa" class="hidden" onclick="event.stopPropagation();">
+            <div class="options" style="margin-top: 30px;">
+                <div style="font-size:1.05rem; margin-bottom: 15px; color:#ffffff; font-weight:bold; letter-spacing: 1px;">現在，輪到你來當晴天娃娃了。</div>
+                <div style="font-size:1.02rem; margin-bottom: 20px; color:#ffffff;">題目 10：你想要被畫上什麼顏色的五官呢？</div>
+                <button class="white-text-btn" onclick="goToPage14()">黑色</button>
+                <button class="white-text-btn" onclick="goToPage14()">紅色</button>
+                <button class="white-text-btn" onclick="goToPage14()">用剪刀戳個洞</button>
+                <div style="font-size:0.9rem; margin-top:20px; letter-spacing: 2px; color: #ffffff; font-weight: bold;">點 擊 提 交 ，付 出 代 價</div>
+            </div>
+        </div>
+        <div class="hint-text" id="p13-hint">點擊螢幕以繼續</div>
+    </div>
+</div>
+
+<div id="page14" class="clickable-page hidden" onclick="advancePage14()">
+    <div class="container">
+        <div class="text-content" style="font-size: 1.2rem; font-weight:bold; color: #ff0000; line-height: 2.2;">希望你今晚做個好夢
+        因為醒來以後
+        你就會成為我們的一員了</div>
+        <div class="hint-text" id="p14-hint" style="color: #444444;">點擊螢幕以繼續</div>
+    </div>
+</div>
+
+<script>
+    let currentPage = 1;
+    let p9Stage = 1;
+    let p13Stage = 1;
+
+    function nextPage(page) {
+        // 1. 還原全域環境樣式
+        document.body.className = "";
+        
+        // 2. 徹底隱藏「當前正在顯示的頁面」
+        const currentTarget = document.getElementById(`page${currentPage}`);
+        if (currentTarget) {
+            currentTarget.classList.add('hidden');
+        }
+        
+        // 3. 顯示新頁面
+        const nextTarget = document.getElementById(`page${page}`);
+        if (nextTarget) {
+            nextTarget.classList.remove('hidden');
+        }
+        
+        // 4. 控制大容器與全版點擊容器的交叉干涉問題
+        const listClickPages = [7, 9, 13, 14];
+        if(listClickPages.includes(page)) {
+            document.getElementById('main-container').classList.add('hidden');
+        } else {
+            document.getElementById('main-container').classList.remove('hidden');
+        }
+        
+        // 5. 特殊頁面底色渲染
+        if((page === 9 && p9Stage === 3) || (page === 13 && p13Stage === 3)) {
+            document.body.classList.add('red-bg');
+        }
+        if(page === 14) {
+            document.body.classList.add('black-bg');
+        }
+        
+        currentPage = page;
+    }
+
+    // 第二頁不願意處理
+    function handleP2Refuse() {
+        const refuseBtn = document.getElementById('p2-refuse');
+        refuseBtn.disabled = true;
+        refuseBtn.classList.add('red-text');
+        refuseBtn.innerText = "謝謝你願意";
+        setTimeout(() => {
+            nextPage(3);
+        }, 3000); 
+    }
+
+    // 通用按鈕轉換延遲流 (3秒)
+    function handleDelayChoice(button, prefix, className, newText, targetPage) {
+        const buttons = document.querySelectorAll(`#${prefix}-options button`);
+        buttons.forEach(btn => btn.disabled = true);
+        
+        button.className = className;
+        button.innerText = newText;
+        
+        setTimeout(() => {
+            nextPage(targetPage);
+        }, 3000); 
+    }
+
+    // 第九頁複合點擊流
+    function advancePage9() {
+        if (p9Stage === 1) {
+            document.getElementById('p9-text').innerHTML = "不過憑什麼？\n祈求晴天的是你\n要被倒吊懲罰的卻是它？\n它拒絕再為你受懲罰了。\n<span class='red-text' style='font-weight:bold;'>它很生氣。</span>";
+            p9Stage = 2;
+        } else if (p9Stage === 2) {
+            document.body.classList.add('red-bg');
+            document.getElementById('p9-text').innerHTML = '<span class="big-white">是的 我 開 心 嗎？ 錯了，是：<br>是的 我 很 生 氣</span>';
+            // 精準修正成你要求的纯文字
+            document.getElementById('p9-text').innerHTML = '<span class="big-white">是的 我 很 生 氣</span>';
+            document.getElementById('p9-hint').classList.add('hidden');
+            p9Stage = 3;
+            setTimeout(() => {
+                nextPage(10);
+            }, 3000); 
+        }
+    }
+
+    // 第十三頁點擊流
+    function advancePage13() {
+        if (p13Stage === 1) {
+            document.getElementById('p13-text').innerText = "這個代價理所當然是由你承擔。\n你聽，外面的雨聲好像停了。\n因為，繩子已經套好了。";
+            p13Stage = 2;
+        } else if (p13Stage === 2) {
+            document.getElementById('p13-text').classList.add('hidden');
+            document.getElementById('p13-hint').classList.add('hidden');
+            
+            document.body.classList.add('red-bg');
+            document.getElementById('p13-final-qa').classList.remove('hidden');
+            p13Stage = 3; 
+        }
+    }
+    
+    function goToPage14() {
+        nextPage(14);
+    }
+
+    // 第十四頁點擊流
+    function advancePage14() {
+        nextPage(15);
+    }
+</script>
+
+</body>
+</html>
