@@ -51,6 +51,7 @@
             width: 320px;
             transition: all 0.3s ease;
             letter-spacing: 1px;
+            display: block;
         }
         button:hover:not(:disabled) {
             background-color: #000000;
@@ -61,7 +62,7 @@
         }
         .hidden { display: none !important; }
         
-        /* 樣式色彩控制 */
+        /* 色彩與字體特效控制 */
         .red-text { color: #ff0000 !important; border-color: #ff0000 !important; }
         .green-text { color: #008800 !important; border-color: #008800 !important; }
         .white-text-btn { color: #ffffff !important; border-color: #ffffff !important; }
@@ -80,18 +81,17 @@
             font-weight: bold;
             letter-spacing: 6px;
         }
-        @keyframes pulse {
-            0% { opacity: 0.3; }
-            50% { opacity: 0.8; }
-            100% { opacity: 0.3; }
-        }
-        /* 娃娃圖示 */
+        /* 娃娃圖示專用樣式 */
         .doll-svg {
             margin: 20px auto 25px auto;
             display: block;
             opacity: 0.8;
         }
-        /* 點擊螢幕繼續專用容器 */
+        @keyframes pulse {
+            0% { opacity: 0.3; }
+            50% { opacity: 0.8; }
+            100% { opacity: 0.3; }
+        }
         .clickable-page {
             width: 100%;
             height: 100vh;
@@ -104,26 +104,12 @@
             top: 0;
             left: 0;
             padding: 20px;
-            z-index: 10;
         }
-        
-        /* 全域背景反轉樣式 */
         body.red-bg { background-color: #ff0000 !important; color: #ffffff !important; }
         body.black-bg { background-color: #000000 !important; color: #ff0000 !important; }
     </style>
 </head>
 <body>
-
-<div class="hidden">
-    <svg id="doll-icon" width="60" height="80" viewBox="0 0 60 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="30" cy="25" r="14" stroke="currentColor" stroke-width="1.5"/>
-        <path d="M18 23C18 23 19 21 21 21C23 21 23 23 23 23" stroke="currentColor" stroke-width="1.2"/>
-        <path d="M37 23C37 23 38 21 40 21C42 21 42 23 42 23" stroke="currentColor" stroke-width="1.2"/>
-        <path d="M26 31C28 33 32 33 34 31" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
-        <path d="M30 11V2" stroke="currentColor" stroke-width="1.2"/>
-        <path d="M16 36C22 37 25 35 30 38C35 35 38 37 44 36C47 42 49 54 46 72C38 68 34 74 30 70C26 74 22 68 14 72C11 54 13 42 16 36Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
-    </svg>
-</div>
 
 <div class="container" id="main-container">
     <div id="page1">
@@ -132,7 +118,7 @@
         讓我們一起製作晴天娃娃，
         祈禱明天放晴吧！</div>
         <div class="options">
-            <button onclick="nextPage(2)">進 入 遊 戲</button>
+            <button onclick="nextPage(2)">[ 進 入 遊 戲 ]</button>
         </div>
     </div>
 
@@ -143,7 +129,15 @@
         你要不要把我掛在窗前
         一起祈求明天的陽光呢？
         
-        <script>document.write(document.getElementById('doll-icon').outerHTML);</script>
+        <svg class="doll-svg" width="60" height="80" viewBox="0 0 60 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="30" cy="25" r="14" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M18 23C18 23 19 21 21 21C23 21 23 23 23 23" stroke="currentColor" stroke-width="1.2"/>
+            <path d="M37 23C37 23 38 21 40 21C42 21 42 23 42 23" stroke="currentColor" stroke-width="1.2"/>
+            <path d="M26 31C28 33 32 33 34 31" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+            <path d="M30 11V2" stroke="currentColor" stroke-width="1.2"/>
+            <path d="M16 36C22 37 25 35 30 38C35 35 38 37 44 36C47 42 49 54 46 72C38 68 34 74 30 70C26 74 22 68 14 72C11 54 13 42 16 36Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+        </svg>
+
         <div style="font-size: 1.05rem; font-weight:400;">題目 1：你願意把我掛上去嗎？</div></div>
         <div class="options">
             <button onclick="nextPage(3)">願意。</button>
@@ -164,7 +158,17 @@
     </div>
 
     <div id="page4" class="hidden">
-        <div class="text-content"><script>document.write(document.getElementById('doll-icon').outerHTML);</script><span style="font-size: 1.05rem; font-weight:400;">題目 3：當你用繩子死死勒住我的脖子、掛在窗前時，你聽到了什麼？</span></div>
+        <div class="text-content">
+            <svg class="doll-svg" width="60" height="80" viewBox="0 0 60 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="30" cy="25" r="14" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M18 23C18 23 19 21 21 21C23 21 23 23 23 23" stroke="currentColor" stroke-width="1.2"/>
+                <path d="M37 23C37 23 38 21 40 21C42 21 42 23 42 23" stroke="currentColor" stroke-width="1.2"/>
+                <path d="M26 31C28 33 32 33 34 31" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+                <path d="M30 11V2" stroke="currentColor" stroke-width="1.2"/>
+                <path d="M16 36C22 37 25 35 30 38C35 35 38 37 44 36C47 42 49 54 46 72C38 68 34 74 30 70C26 74 22 68 14 72C11 54 13 42 16 36Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+            </svg>
+            <span style="font-size: 1.05rem; font-weight:400;">題目 3：當你用繩子死死勒住我的脖子、掛在窗前時，你聽到了什麼？</span>
+        </div>
         <div class="options" id="p4-options">
             <button onclick="handleDelayChoice(this, 'p4', 'green-text', '別擔心，馬上就會晴天了', 5)">窗外滴滴答答的雨聲。</button>
             <button onclick="handleDelayChoice(this, 'p4', 'red-text', '聽起來像是有人在哭泣呢', 5)">風吹過窗縫，呼呼的聲音。</button>
@@ -174,7 +178,16 @@
 
     <div id="page5" class="hidden">
         <div class="text-content">雨水不斷拍打著玻璃。房間裡好像越來越冷了。
-        <script>document.write(document.getElementById('doll-icon').outerHTML);</script>
+        
+        <svg class="doll-svg" width="60" height="80" viewBox="0 0 60 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="30" cy="25" r="14" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M18 23C18 23 19 21 21 21C23 21 23 23 23 23" stroke="currentColor" stroke-width="1.2"/>
+            <path d="M37 23C37 23 38 21 40 21C42 21 42 23 42 23" stroke="currentColor" stroke-width="1.2"/>
+            <path d="M26 31C28 33 32 33 34 31" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+            <path d="M30 11V2" stroke="currentColor" stroke-width="1.2"/>
+            <path d="M16 36C22 37 25 35 30 38C35 35 38 37 44 36C47 42 49 54 46 72C38 68 34 74 30 70C26 74 22 68 14 72C11 54 13 42 16 36Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+        </svg>
+
         <span style="font-size: 1.05rem; font-weight:400;">題目 4：你看著窗前的娃娃，你覺得它現在是用什麼姿勢看著你？</span></div>
         <div class="options" id="p5-options">
             <button onclick="handleDelayChoice(this, 'p5', 'red-text', '我無法控制自己。', 6)">順著風，輕快地在窗前旋轉。</button>
@@ -184,7 +197,17 @@
     </div>
 
     <div id="page6" class="hidden">
-        <div class="text-content"><script>document.write(document.getElementById('doll-icon').outerHTML);</script><span style="font-size: 1.05rem; font-weight:400;">題目 5：仔細一看，你發現剛才親手綁的繩結……</span></div>
+        <div class="text-content">
+            <svg class="doll-svg" width="60" height="80" viewBox="0 0 60 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="30" cy="25" r="14" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M18 23C18 23 19 21 21 21C23 21 23 23 23 23" stroke="currentColor" stroke-width="1.2"/>
+                <path d="M37 23C37 23 38 21 40 21C42 21 42 23 42 23" stroke="currentColor" stroke-width="1.2"/>
+                <path d="M26 31C28 33 32 33 34 31" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+                <path d="M30 11V2" stroke="currentColor" stroke-width="1.2"/>
+                <path d="M16 36C22 37 25 35 30 38C35 35 38 37 44 36C47 42 49 54 46 72C38 68 34 74 30 70C26 74 22 68 14 72C11 54 13 42 16 36Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+            </svg>
+            <span style="font-size: 1.05rem; font-weight:400;">題目 5：仔細一看，你發現剛才親手綁的繩結……</span>
+        </div>
         <div class="options" id="p6-options">
             <button onclick="handleDelayChoice(this, 'p6', 'red-text', '應該不會掉下來吧？', 7)">綁得很牢。</button>
             <button onclick="handleDelayChoice(this, 'p6', 'red-text', '有點痛⋯', 7)">似乎陷進了白布深處，把它的脖子勒得越來越細。</button>
@@ -193,7 +216,17 @@
     </div>
 
     <div id="page8" class="hidden">
-        <div class="text-content"><script>document.write(document.getElementById('doll-icon').outerHTML);</script><span style="font-size: 1.05rem; font-weight:400;">題目 6：聽完故事，你猛然看向窗邊，你覺得那個娃娃……</span></div>
+        <div class="text-content">
+            <svg class="doll-svg" width="60" height="80" viewBox="0 0 60 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="30" cy="25" r="14" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M18 23C18 23 19 21 21 21C23 21 23 23 23 23" stroke="currentColor" stroke-width="1.2"/>
+                <path d="M37 23C37 23 38 21 40 21C42 21 42 23 42 23" stroke="currentColor" stroke-width="1.2"/>
+                <path d="M26 31C28 33 32 33 34 31" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+                <path d="M30 11V2" stroke="currentColor" stroke-width="1.2"/>
+                <path d="M16 36C22 37 25 35 30 38C35 35 38 37 44 36C47 42 49 54 46 72C38 68 34 74 30 70C26 74 22 68 14 72C11 54 13 42 16 36Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+            </svg>
+            <span style="font-size: 1.05rem; font-weight:400;">題目 6：聽完故事，你猛然看向窗邊，你覺得那個娃娃……</span>
+        </div>
         <div class="options" id="p8-options">
             <button onclick="handleDelayChoice(this, 'p8', 'red-text', '是嗎？', 9)">只是普通的娃娃。</button>
             <button onclick="handleDelayChoice(this, 'p8', 'red-text', '你的感覺沒有錯。', 9)">形狀越來越像一個被吊死的人。</button>
@@ -231,7 +264,15 @@
     <div id="page15" class="hidden">
         <div class="text-content" style="font-size: 1.5rem; letter-spacing: 4px; font-weight:bold; margin-bottom: 20px;">成 功 通 關</div>
         <div class="text-content" style="font-size: 1rem; color: #666666; margin-bottom: 10px;">謝謝遊玩 希望你今晚做個好夢！</div>
-        <script>document.write(document.getElementById('doll-icon').outerHTML);</script>
+        
+        <svg class="doll-svg" width="60" height="80" viewBox="0 0 60 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="30" cy="25" r="14" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M18 23C18 23 19 21 21 21C23 21 23 23 23 23" stroke="currentColor" stroke-width="1.2"/>
+            <path d="M37 23C37 23 38 21 40 21C42 21 42 23 42 23" stroke="currentColor" stroke-width="1.2"/>
+            <path d="M26 31C28 33 32 33 34 31" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+            <path d="M30 11V2" stroke="currentColor" stroke-width="1.2"/>
+            <path d="M16 36C22 37 25 35 30 38C35 35 38 37 44 36C47 42 49 54 46 72C38 68 34 74 30 70C26 74 22 68 14 72C11 54 13 42 16 36Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+        </svg>
     </div>
 </div>
 
@@ -284,22 +325,22 @@
     let p13Stage = 1;
 
     function nextPage(page) {
-        // 1. 還原全域環境樣式
+        // 1. 還原底色樣式
         document.body.className = "";
         
-        // 2. 徹底隱藏「當前正在顯示的頁面」
+        // 2. 徹底隱藏目前的頁面
         const currentTarget = document.getElementById(`page${currentPage}`);
         if (currentTarget) {
             currentTarget.classList.add('hidden');
         }
         
-        // 3. 顯示新頁面
+        // 3. 顯示下一頁
         const nextTarget = document.getElementById(`page${page}`);
         if (nextTarget) {
             nextTarget.classList.remove('hidden');
         }
         
-        // 4. 控制大容器與全版點擊容器的交叉干涉問題
+        // 4. 防止滿版與常規網頁容器互相衝突
         const listClickPages = [7, 9, 13, 14];
         if(listClickPages.includes(page)) {
             document.getElementById('main-container').classList.add('hidden');
@@ -307,7 +348,7 @@
             document.getElementById('main-container').classList.remove('hidden');
         }
         
-        // 5. 特殊頁面底色渲染
+        // 5. 觸發環境背景反轉
         if((page === 9 && p9Stage === 3) || (page === 13 && p13Stage === 3)) {
             document.body.classList.add('red-bg');
         }
@@ -318,7 +359,7 @@
         currentPage = page;
     }
 
-    // 第二頁不願意處理
+    // 第二頁不願意按鈕壞掉機制
     function handleP2Refuse() {
         const refuseBtn = document.getElementById('p2-refuse');
         refuseBtn.disabled = true;
@@ -329,7 +370,7 @@
         }, 3000); 
     }
 
-    // 通用按鈕轉換延遲流 (3秒)
+    // 通用選擇延遲推進 (3秒)
     function handleDelayChoice(button, prefix, className, newText, targetPage) {
         const buttons = document.querySelectorAll(`#${prefix}-options button`);
         buttons.forEach(btn => btn.disabled = true);
@@ -342,15 +383,13 @@
         }, 3000); 
     }
 
-    // 第九頁複合點擊流
+    // 第九頁點擊流控制
     function advancePage9() {
         if (p9Stage === 1) {
             document.getElementById('p9-text').innerHTML = "不過憑什麼？\n祈求晴天的是你\n要被倒吊懲罰的卻是它？\n它拒絕再為你受懲罰了。\n<span class='red-text' style='font-weight:bold;'>它很生氣。</span>";
             p9Stage = 2;
         } else if (p9Stage === 2) {
             document.body.classList.add('red-bg');
-            document.getElementById('p9-text').innerHTML = '<span class="big-white">是的 我 開 心 嗎？ 錯了，是：<br>是的 我 很 生 氣</span>';
-            // 精準修正成你要求的纯文字
             document.getElementById('p9-text').innerHTML = '<span class="big-white">是的 我 很 生 氣</span>';
             document.getElementById('p9-hint').classList.add('hidden');
             p9Stage = 3;
@@ -360,7 +399,7 @@
         }
     }
 
-    // 第十三頁點擊流
+    // 第十三頁點擊流控制
     function advancePage13() {
         if (p13Stage === 1) {
             document.getElementById('p13-text').innerText = "這個代價理所當然是由你承擔。\n你聽，外面的雨聲好像停了。\n因為，繩子已經套好了。";
@@ -379,7 +418,6 @@
         nextPage(14);
     }
 
-    // 第十四頁點擊流
     function advancePage14() {
         nextPage(15);
     }
